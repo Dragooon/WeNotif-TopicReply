@@ -12,4 +12,5 @@
  */
 
 $txt['notification_topicreply'] = '%s replied to your topic "%s"';
+$txt['notification_topicreply_multiple'] = '%s and %d others posted %d new replies to your topic "%s"';
 ?>

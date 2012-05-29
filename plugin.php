@@ -60,7 +60,7 @@ function wenotif_create_post_after(&$msgOptions, &$topicOptions, &$posterOptions
 	// Issue the notification
 	$notifiers = WeNotif::getNotifiers();
 	Notification::issue($id_member, $notifiers['topicreply'], $id_topic,
-							array('subject' => $subject, 'id_msg' => $msgOptions['id'], 'member' => $posterOptions['name']));
+							array('subject' => $subject, 'id_msg' => $msgOptions['id'], 'members' => array($posterOptions['name']), 'num' => 1));
 }
 
 class TopicReplyNotifier implements Notifier
@@ -105,7 +105,12 @@ class TopicReplyNotifier implements Notifier
 
 		$data = $notification->getData();
 
-		return sprintf($txt['notification_topicreply'], $data['member'], shorten_subject($data['subject'], 25));
+		// Only one member?
+		if ($data['num'] == 1)
+			return sprintf($txt['notification_topicreply'], $data['members'][0], shorten_subject($data['subject'], 25));
+		else
+			return sprintf($txt['notification_topicreply_multiple'], $data['members'][0], count(array_unique($data['members'])) - 1,
+							$data['num'], shorten_subject($data['subject'], 20));
 	}
 
 	/**
@@ -117,5 +122,24 @@ class TopicReplyNotifier implements Notifier
 	public function getName()
 	{
 		return 'topicreply';
+	}
+
+	/**
+	 * Callback for handling multiple notifications on the same object
+	 * We just bump the old notification
+	 *
+	 * @access public
+	 * @param Notification $notification
+	 * @param array &$data Reference to the new notification's data, if something needs to be altered
+	 * @return bool, if false then a new notification is not created but the current one's time is updated
+	 */
+	public function handleMultiple(Notification $notification, array &$data)
+	{
+		$existing_data = $notification->getData();
+		$existing_data['members'][] = $data['members'][0];
+		$existing_data['num']++;
+		$notification->updateData($existing_data);
+
+		return false;
 	}
 }
