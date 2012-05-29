@@ -89,7 +89,7 @@ class TopicReplyNotifier implements Notifier
 
 		$data = $notification->getData();
 
-		return $scripturl . '?action=topic=' . $notification->getObject() . '.msg' . $data['id_msg'] . '#msg' . $data['id_msg'];
+		return $scripturl . '?topic=' . $notification->getObject() . '.msg' . $data['id_msg'] . '#msg' . $data['id_msg'];
 	}
 
 	/**
