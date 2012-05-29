@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<plugin id="Dragooon:WeNotif-TopicReply">
+  <name>Notifications (Topic Reply)</name>
+  <author email="mail@dragooon.net" url="http://smf-media.com/">Shitiz "Dragooon" Garg</author>
+  <description>Notifications extension for notifying the user of a reply to their topic</description>
+  <version>1.0</version>
+
+  <hooks>
+    <function point="notification_callback" function="wenotif_topicreply_callback" filename="$plugindir/plugin" />
+    <function point="create_post_after" function="wenotif_create_post_after" filename="$plugindir/plugin" />
+  </hooks>
+</plugin>
