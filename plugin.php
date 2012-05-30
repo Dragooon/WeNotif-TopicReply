@@ -153,4 +153,17 @@ class TopicReplyNotifier implements Notifier
 
 		return false;
 	}
+
+	/**
+	 * Returns the title and description of the notifier for the profile area
+	 *
+	 * @access public
+	 * @return array(title, description)
+	 */
+	public function getProfileDesc()
+	{
+		global $txt;
+
+		return array($txt['notification_topicreply_profile'], $txt['notification_topicreply_profile_desc']);
+	}
 }
