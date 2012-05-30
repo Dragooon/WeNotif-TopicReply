@@ -7,6 +7,6 @@
 
   <hooks>
     <function point="notification_callback" function="wenotif_topicreply_callback" filename="$plugindir/plugin" />
-    <function point="create_post_after" function="wenotif_create_post_after" filename="$plugindir/plugin" />
+    <function point="create_post_after" function="wenotif_topicreply_create_post_after" filename="$plugindir/plugin" />
   </hooks>
 </plugin>

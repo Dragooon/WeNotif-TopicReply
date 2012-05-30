@@ -34,7 +34,7 @@ function wenotif_topicreply_callback(array &$notifiers)
  * @param bool $new_topic
  * @return void
  */
-function wenotif_create_post_after(&$msgOptions, &$topicOptions, &$posterOptions, &$new_topic)
+function wenotif_topicreply_create_post_after(&$msgOptions, &$topicOptions, &$posterOptions, &$new_topic)
 {
 	// Don't bother with new topics
 	if ($new_topic)
