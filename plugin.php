@@ -62,6 +62,18 @@ function wenotif_topicreply_create_post_after(&$msgOptions, &$topicOptions, &$po
 							array('subject' => $subject, 'id_msg' => $msgOptions['id'], 'members' => array($posterOptions['name']), 'num' => 1));
 }
 
+/**
+ * Hook callback for "displaay_main", doesn't do much except mark the topic's notifications as read
+ *
+ * @return void
+ */
+function wenotif_topicreply_display_main()
+{
+	global $topic, $user_info;
+
+	Notification::markReadForNotifier($user_info['id'], WeNotif::getNotifiers('topicreply'), $topic);
+}
+
 class TopicReplyNotifier implements Notifier
 {
 	/**
