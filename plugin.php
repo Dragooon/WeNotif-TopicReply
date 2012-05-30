@@ -58,8 +58,7 @@ function wenotif_create_post_after(&$msgOptions, &$topicOptions, &$posterOptions
 		return;
 	
 	// Issue the notification
-	$notifiers = WeNotif::getNotifiers();
-	Notification::issue($id_member, $notifiers['topicreply'], $id_topic,
+	Notification::issue($id_member, WeNotif::getNotifiers('topicreply'), $id_topic,
 							array('subject' => $subject, 'id_msg' => $msgOptions['id'], 'members' => array($posterOptions['name']), 'num' => 1));
 }
 
