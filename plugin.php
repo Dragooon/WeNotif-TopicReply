@@ -155,15 +155,29 @@ class TopicReplyNotifier implements Notifier
 	}
 
 	/**
-	 * Returns the title and description of the notifier for the profile area
+	 * Returns the elements for notification's profile area
 	 *
 	 * @access public
-	 * @return array(title, description)
+	 * @param int $id_member The ID of the member whose profile is currently being accessed
+	 * @return array(title, description, config_vars)
 	 */
-	public function getProfileDesc()
+	public function getProfile($id_member)
 	{
 		global $txt;
 
-		return array($txt['notification_topicreply_profile'], $txt['notification_topicreply_profile_desc']);
+		return array($txt['notification_topicreply_profile'], $txt['notification_topicreply_profile_desc'], array());
+	}
+
+	/**
+	 * Callback for profile area, called when saving the profile area
+	 *
+	 * @access public
+	 * @param int $id_member The ID of the member whose profile is currently being accessed
+	 * @param array $settings A key => value pair of the fed settings
+	 * @return void
+	 */
+	public function saveProfile($id_member, array $settings)
+	{
+		// We do nothing, we save nothing...
 	}
 }
