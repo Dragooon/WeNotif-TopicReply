@@ -180,4 +180,19 @@ class TopicReplyNotifier implements Notifier
 	{
 		// We do nothing, we save nothing...
 	}
+
+	/**
+	 * E-mail handler
+	 *
+	 * @access public
+	 * @param Notification $notification
+	 * @param array $email_data Any additional e-mail data passed to Notification::issue function
+	 * @return array(subject, body)
+	 */
+	public function getEmail(Notification $notification, array $email_data)
+	{
+		global $txt;
+
+		return array($txt['notification_topicreply_email_subject'], $this->getText($notification));
+	}
 }

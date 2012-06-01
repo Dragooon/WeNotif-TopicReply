@@ -15,4 +15,5 @@ $txt['notification_topicreply'] = '%s replied to your topic "%s"';
 $txt['notification_topicreply_multiple'] = '%s and %d others posted %d new replies to your topic "%s"';
 $txt['notification_topicreply_profile'] = 'Topic replies';
 $txt['notification_topicreply_profile_desc'] = 'Receive notifications when someone replies on a topic you started';
+$txt['notification_topicreply_email_subject'] = 'Someone replied to your topic!';
 ?>
